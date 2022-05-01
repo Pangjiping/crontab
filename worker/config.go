@@ -1,18 +1,18 @@
-package master
+package worker
 
 import (
 	"encoding/json"
 	"io/ioutil"
 )
 
-// master配置
+// worker配置
 type Config struct {
-	ApiPort         int      `json:"apiPort"`
-	ApiReadTimeout  int      `json:"apiReadTimeout"`
-	ApiWriteTimeout int      `json:"apiWriteTimeout"`
-	EtcdEndpoints   []string `json:"etcdEndpoints"`
-	EtcdDialTimeout int      `json:"etcdDialTimeout"`
-	Webroot         string   `json:"webroot"`
+	EtcdEndpoints         []string `json:"etcdEndpoints"`         // etcd集群信息
+	EtcdDialTimeout       int      `json:"etcdDialTimeout"`       // etcd连接超时
+	MongodbUri            string   `json:"mongodbUri"`            // mongodb地址
+	MongodbConnectTimeout int      `json:"mongodbConnectTimeout"` // mongodb连接超时
+	JobLogBatchSize       int      `json:"jobLogBatchSize"`       // 打包上传log的batch大小
+	JobLogCommitTimeout   int      `json:"jobLogCommitTimeout"`   // 日志提交超时时间
 }
 
 var (
